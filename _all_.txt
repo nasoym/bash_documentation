@@ -1,0 +1,213 @@
+
+symbolic link:
+    ln -s sourcedir new_dir :: create symbolic link
+    unlink new_dir :: remove symbolic link
+
+foreground/background jobs processes:
+    fg
+    bg
+    kill
+    jobs %jobid|pid
+    wait :: wait for background jobs to finish
+    ctrl+z :: suspend foreground job
+    %n :: job number n
+    %s :: job starting with string s
+    %?s :: job containing string s
+    %% :: current job
+    % :: current job
+    %- :: previous job
+
+multiple file renaming:
+    rename 's/pattern/new/' *
+
+check if file exists:
+    file ~/dir/file
+
+measure time:
+    time (sleep 1 ; sleep 1)
+    time find . -name "*.java" | xargs ack ..
+
+expand extract:
+    unzip one file and extract without directories    
+        unzip -j nasa.zip res/drawable-hdpi/icon.png
+    
+    tar -xf file
+
+    tar
+    gzip
+    bzip2
+    unzip file -d target_dir
+
+    .gz : gunzip file
+    .gz : gzip -d file
+    .tar.gz : tar -zxvf file
+    .tar.[gz] : tar -xf file
+    .rar : unrar x file
+
+create checksum of directory:
+    find . -name '*.mov' | ls -S | xargs cat | cksum >> checksum.txt
+
+create virtual screen which might be larger than physical screen:
+    xrandr --output VGA1 --rate 60 --mode 1024x600 --fb 2000x1000 --panning 2000x1000
+
+run levels:
+    take process out of automatic start : update-rc.d openser disable
+    take process out of automatic start : update-rc.d openser remove
+    /etc/rc0.d
+
+    runlevel :: show current runlevel
+    init [0|1|2]  :: change to a certain runlevel
+
+    /etc/init.d/apache [start|stop|status]
+    apache:
+    sudo update-rc.d -f apache2 remove :: remove symlink from /etc/rc
+    sudo update-rc.d -f apache2 defaults :: add symlink to /etc/rc
+    /etc/rc2.d :: run level 2 folder
+
+encrypt/decrypt
+    gpg -c file 
+     -o output file name
+    gpg --decrypt file
+    gpg -o out -d file
+     -a create ascii output
+    gpg -d file | vim -n -
+    in vim :% ! gpg -c -a -o file
+
+shell script echo:
+    set +v
+    set -v off
+
+mount:
+    sudo mkdir /media/DATA
+    sudo mount -t auto /dev/sda2 /media/DATA
+    sudo umount /media/DATA/
+
+date:
+    date +"%Y-%m-%d-%H-%M-%S"
+    date -s "2 OCT 2006 18:00:00"
+    date -s "11/20/2003 12:48:00"
+    date +%T -s "11:14:00"
+    date +%Y%m%d -s "20090502"
+
+user owner management:
+    sudo -u user command
+    sudo -s :: switch to root
+    sudo su -
+
+    chown :: change owner
+    chgrp :: change group
+    chmod :: change file mode
+
+    sudo cat /etc/sudoers
+    groups webs
+    sudo usermod -G nogroup,sudo webs
+    sudo -H -u webs /bin/bash
+
+    adduser user_name
+    /etc/sudoers  :: insert for no sudo pwd: user_name  ALL= NOPASSWD: ALL
+
+
+    /etc/passwd - User account information.
+    /etc/shadow - Secure user account information such as password.
+    /etc/group - Group account information.
+    /etc/default/useradd - Default values for account creation.
+    /etc/skel/ - Directory containing default files.
+    /etc/login.defs - Shadow password suite configuration.
+
+    useradd is low level
+    adduser is higher level perl utility
+
+    userdel -r <user> # remove user with users home directory
+
+
+tee:
+    curl www.spiegel.de | tee temp && grep "schutz" < temp
+
+
+
+
+---------------------------------------------------------------------------------
+
+echo `adb devices | grep -o "H.*8\>"`> test.txt :: pipe the greped adb devcies output to test.txt
+
+~/.bashrc
+~/.bash_profile
+
+alias='command'
+
+sleep
+
+locate
+
+stat
+
+updatedb
+
+mount
+
+service
+
+crontab
+
+/etc/crontab  ## a file with system wide cronjobs
+/etc/cron.d  ## any cron lines will be executed in all files
+  file should have no dot ending (just a simple name)
+  and mode sould be rw-r--r-- (644)
+cron definitions in both files need a user specification before the command
+
+gnu :: gnu compiler
+gnu -L -I include dir
+ld :: gnu linker
+
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+
+diff -r path1 path2
+
+tree -P "*.c|*.h|*.cs|*.cxx" -I "*.xcodeproj"
+
+tree -P "*.c|*.h|*.cs|*.cxx" -I "*.xcodeproj" -H "/Users/sinan/Programs/VirtualBox/Shared/openvcs_v1" -o tree1.html -C
+
+
+adb shell pm list packages | grep -o "com.*artcom.*\w" | xargs -I xx adb uninstall xx
+find . -name *.apk | xargs -I xx aapt l -a xx | grep targetPackage
+find . -name *.apk | xargs -I xx adb install xx
+
+bc
+ibase=2;1000 :: convert binary to decimal
+obase=16:32
+scale=2  :: use 2 digits for floating point precision
+
+echo "4*38.4" | bc
+
+echo -e "\a" :: beep
+echo -e "\007" :: beep
+echo "message" | wall :: alert all users in all terminals
+
+echo -ne ".." :: do not print carriage return at end of echo
+
+lspci
+lsmod
+dmesg
+
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
+export CLICOLOR=1
+export LSCOLORS=GxCxBxDxExacahEfEdGhGf
+
+cat /etc/shells 
+
+man re_format  :: posix regular expression
+man pcre  :: perl compatible regular expression
+man pcresyntax
+man pcrepattern
+
+man builtin
+
+man bash 
+man sh 
+man ksh 
+
+grep -P :: use perl regular expression
+
+nohup :: run command immune to hangup

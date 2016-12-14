@@ -1,0 +1,19 @@
+
+/etc/init.d/custom_service_bash_script
+
+/etc/rc0.d/symlink_to_custom_service_bash_script
+    with special naming:
+        K: this service will be killed when this run level is entered
+        S: this service will be started when this run level is entered
+        number following K or S indicates order in which scripts are executed
+
+runlevels:
+    0   Halt the system.
+    1   Single-user mode (for special administration).
+    2   Local Multiuser with Networking but without network service (like NFS)
+    3   Full Multiuser with Networking
+    4   Not Used
+    5   Full Multiuser with Networking and X Windows(GUI)
+    6   Reboot.
+
+runlevel show current runlevel

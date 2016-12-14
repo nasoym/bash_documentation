@@ -1,0 +1,49 @@
+command composition
+cmd & :: execute in background
+cmd ; cmd :: execute in sequence
+( cmd; cmd ) :: execute as group in a subshell
+cmd1 | cmd2 :: pipe output of cmd1 to stdinput of cmd2
+cmd1 `cmd2` :: use output of cmd2 as argument of cmd1
+cmd1 && cmd2 :: execute cmd2 if cmd1 succeeds
+cmd1 || cmd2 :: execute cmd2 if cmd1 fails
+cmd > file :: write output of cmd to file
+cmd >> :: append output of cmd to file
+cmd < file :: take stdin for cmd from file
+
+command substitution
+`command`  :: execute command in backticks
+$(command) :: execute output of command in brackets
+
+command >> stdout.txt 2>&1 :: also append STDERR to STDOUT and append to stdout.txt
+command 2>&1 :: pipe stderr to stdout
+
+du -h $(!204) :: embedding history command in another command
+du -h `!204`
+
+
+<http://www.math.utah.edu/docs/info/features_7.html>
+
+ctrl+w : delete last word
+ctrl+a : move to start of line
+ctrl+e : move to end of line
+ctrl+b : move backward one character
+ctrl+f : move forward one character
+ctrl+d : delete character under cursor
+ctrl+h : delete character before cursor
+ctrl+_ : undo last operation
+ctrl+l : clear screen and put current line on top
+ctrl+k : kill until end of line
+ctrl+y : yank the last killed text at the cursor
+
+ctrl+p : get previous command from history
+ctrl+n : get next command from history
+
+esc+b : move one word left
+esc+f : move one word right
+
+esc+= : list files that begin with current word
+esc+esc : complete pathname of the current word
+esc+d : delete current word
+
+
+

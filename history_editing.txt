@@ -1,0 +1,71 @@
+history -d NUM ## delete command from history
+
+history editing
+ctrl +
+r : enter beginning of command to search in history
+g : abort history search
+#R : enter word to search in any command history 
+s : search forward (navigate back) (enable with 'stty -ixon' in .bashrc)
+p : previous
+n : next
+a : goto beginning of line
+e : goto end of line
+f : one letter forward
+b : one letter back
+d : delete one character
+u : delete all characters before cursor
+w : cut word before cursor
+k : cut until end
+t : swap characters
+y : paste
+space : mark beginning of selection
+
+history:
+!40 :: run command with number 40
+!! :: run last command
+!-n :: run the nth command back from current
+!xxx :: run command starting with "xxx"
+!?xxx? :: run command that contains "xxx"
+^A^B^ :: run last command and substitute A with B
+
+echo "!!" :: will print the last command
+
+command word substitution:
+:0 :: command name
+:3 :: argument number 3
+^ :: first argument
+$ :: last argument
+% :: argument matched by a !?string? search
+:2-4 :: arguments 2 through 4
+:2- :: argument 2 through next to last
+:2* :: argument 2 through last
+:2-$ :: argument 2 through last
+* :: all arguments
+^-$ :: all arguments
+-4 :: words 0 through 4
+:0-4 :: words 0 through 4
+
+echo "!:3" :: will echo the 3rd argument from the last command
+echo !-3:1 :: will show the first argument from the 3rd command back from the last
+
+:p :: display command but don't execute ??
+:s/A/B :: substitute first A with B in command
+:gs/A/B :: substitute all A's with B
+:Gs/A/B :: substitute all A's (word match) with B
+:as/A/B :: same as :gs/A/B
+:& :: repeat previous substitution first instance only
+:g& :: repeat previous substitution
+:q :: quote a word list
+:x :: quote separate words
+
+:r :: extract first available path name root
+:e :: extract first available path name extension
+:h :: extract first available path name header
+:t :: extract first available path name tail
+
+echo !!:1:h :: show first header match in first argument of last command
+echo !!:1:h:gs/h/U :: like above but also replace all h's with U
+
+history | tail :: show last 10 commands
+history | tail -n 40 :: show last 40 commands
+

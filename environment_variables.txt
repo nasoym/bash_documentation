@@ -1,0 +1,14 @@
+environment variables
+
+export TTT="test"
+export :: show all variables
+echo $TTT
+
+set :: show all variables
+unset TTT :: remove variable
+
+env :: show all variables
+
+echo $? :: show last return value
+
+TTT=4 sh script.sh :: set an environment variable only for one script
